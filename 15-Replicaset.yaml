@@ -2,6 +2,22 @@ apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: nginx
-  labels: #thses r replicaset labels, not pod labels
+  labels: #these r replicaset labels, not pod labels
     app: nginx
     tier: frontend
+spec:
+  replicas: 3
+  selector: #these r used to select the pods to create replicaset, these r not pod labels
+    matchLabels:
+      app: nginx
+      tier: frontend
+  #this is pod definition, this is used to create pods, these r not replicaset labels
+  template:
+    metadata:
+      labels: #these r pod labels, not replicaset labels
+        app: nginx
+        tier: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
