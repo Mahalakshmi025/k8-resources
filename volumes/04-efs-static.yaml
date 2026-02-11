@@ -34,7 +34,7 @@ kind: Pod
 metadata:
   name: efs-static
   labels:
-  purpose: efs-static
+    purpose: efs-static
 spec:
   containers:
   - name: nginx
