@@ -27,7 +27,7 @@ subjects:
 # You can specify more than one "subject"
 - kind: ServiceAccount #this must be User, Group or ServiceAccount
   name: secret-reader # "name" is case sensitive
-  apiGroup: rbac.authorization.k8s.io
+  namespace: expense # "namespace" is required if the "kind" is ServiceAccount
 roleRef:
   # "roleRef" specifies the binding to a Role / ClusterRole
   kind: Role #this must be Role or ClusterRole
@@ -40,6 +40,7 @@ kind: Pod
 metadata:
   name: nginx
 spec:
+  serviceAccountName: secret-reader
   containers:
   - name: nginx
     image: nginx:stable-perl
